@@ -8,8 +8,5 @@ https://proxy.marvel.techmeup.io
 ### Prerequisites
 Install Dart and Flutter https://flutter.dev/docs/get-started/install
 
-### Dependencies (optionnal)
-Install the API Proxy: https://gitlab.techmeup.io/travelcar/marvel_proxy
-
 ### Run
 Then use VS.Code with the `.vscode` directory configuration.
