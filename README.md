@@ -1,21 +1,15 @@
+[![pipeline status](http://gitlab.techmeup.io/travelcar/marvel_proxy/badges/master/pipeline.svg)](http://gitlab.techmeup.io/travelcar/marvel_proxy/commits/master)
+
 # marvel_proxy
+## Production envrironment
+https://proxy.marvel.techmeup.io
 
-## Running the Application Locally
+## Development environment
+### Prerequisites
+Install Dart and Flutter https://flutter.dev/docs/get-started/install
 
-Run `aqueduct serve` from this directory to run the application. For running within an IDE, run `bin/main.dart`. By default, a configuration file named `config.yaml` will be used.
+### Dependencies (optionnal)
+Install the API Proxy: https://gitlab.techmeup.io/travelcar/marvel_proxy
 
-To generate a SwaggerUI client, run `aqueduct document client`.
-
-## Running Application Tests
-
-To run all tests for this application, run the following in this directory:
-
-```
-pub run test
-```
-
-The default configuration file used when testing is `config.src.yaml`. This file should be checked into version control. It also the template for configuration files used in deployment.
-
-## Deploying an Application
-
-See the documentation for [Deployment](https://aqueduct.io/docs/deploy/).
+### Run
+Then use VS.Code with the `.vscode` directory configuration.
