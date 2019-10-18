@@ -15,6 +15,7 @@ class MarvelProxyChannel extends ApplicationChannel {
   @override
   Controller get entryPoint {
     return Router()
+      ..route("/").linkFunction((request) async => Response.ok(await File('client.html').readAsString())..contentType = ContentType.html)
       ..route("/characters").link(() => CharactersController(_cache))
       ..route("/series").link(() => SeriesController(_cache))
     ;

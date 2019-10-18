@@ -8,7 +8,12 @@ class SeriesController extends ResourceController {
   final Cache<String, http.Response> _cache;
 
   @Operation.get()
-  Future<Response> getCharacters(@Bind.query('tsw') String titleStartsWith) async {
+  Future<Response> getSeries(@Bind.query("tsw") String titleStartsWith) async {
     return Response.ok(await ApiService(_cache).getMarvelSeries(titleStartsWith));
+  }
+
+  @override
+  Map<String, APIResponse> documentOperationResponses(APIDocumentContext context, Operation operation) {
+    return {"200": APIResponse("A list of Marvel comic series where title begins by `tsw`.")};
   }
 }
