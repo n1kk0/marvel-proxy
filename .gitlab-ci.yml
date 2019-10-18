@@ -22,6 +22,7 @@ tests:
     - pub upgrade
     - pub global activate aqueduct
     - pub get --offline
+    - export PATH="$PATH":"$PWD/.pub_cache/bin"
     - aqueduct document client --host=https://proxy.marvel.techmeup.io
   script:
     - pub run test
