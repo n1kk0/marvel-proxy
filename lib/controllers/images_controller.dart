@@ -4,22 +4,25 @@ import 'package:http/http.dart' as http;
 import 'package:marvel_proxy/marvel_proxy.dart';
 
 class ImagesController extends ResourceController {
-  ImagesController(this._cache);
+  ImagesController(this._cache, this._messageHub);
 
-  final Cache<String, http.Response> _cache;
+  final Cache<String, List<int>> _cache;
+  final ApplicationMessageHub _messageHub;
 
   @Operation.get()
   Future<Response> getCharacters(@Bind.query("uri") String uri) async {
-    http.Response response;
+    List<int> bodyBytes;
 
     if (_cache.containsKey(uri)) {
-      response = _cache.get(uri);
+      bodyBytes = _cache.get(uri);
     } else {
-      response = await http.Client().get(Uri.parse(uri));
-      _cache.set("uri", response);
+      final http.Response response = await http.Client().get(Uri.parse(uri));
+      bodyBytes = response.bodyBytes;
+      _cache.set("uri", bodyBytes);
+      _messageHub.add({"type": "images", "url": uri, "response": bodyBytes});
     }
 
-    final File image = MemoryFileSystem().file('tmp')..writeAsBytesSync(response.bodyBytes);
+    final File image = MemoryFileSystem().file('tmp')..writeAsBytesSync(bodyBytes);
 
     if (image == null) {
       return Response.notFound();
