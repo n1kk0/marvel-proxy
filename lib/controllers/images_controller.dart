@@ -33,6 +33,6 @@ class ImagesController extends ResourceController {
 
     return Response.ok(image.openRead())
       ..encodeBody = false
-      ..contentType = ContentType("application", "octet-stream");
+      ..contentType = ContentType("image", finalUri.substring(finalUri.length - 3));
   }
 }
