@@ -8,16 +8,13 @@ class ImagesController extends ResourceController {
 
   final Cache<String, List<int>> _cache;
   final ApplicationMessageHub _messageHub;
-  final List<String> _notAvailables = [
-    "http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available.jpg",
-    "http://i.annihil.us/u/prod/marvel/i/mg/f/60/4c002e0305708.gif",
-  ];
+  final RegExp pattern = RegExp("^http://i.annihil.us/u/prod/marvel/i/mg/[a-f,0-9]{1}/[a-f,0-9]{2}/[a-f,0-9]{13}.(gif|jpg|png)\$");
 
   @Operation.get()
   Future<Response> getCharacters(@Bind.query("uri") String uri) async {
     List<int> bodyBytes;
 
-    final String finalUri = _notAvailables.where((notAvailableUri) => notAvailableUri == uri).isNotEmpty ? "http://www.startupdelta.org/wp-content/uploads/2018/04/No-profile-LinkedIn-600x600.jpg" : uri;
+    final String finalUri = pattern.hasMatch(uri) ? uri : "http://www.startupdelta.org/wp-content/uploads/2018/04/No-profile-LinkedIn-600x600.jpg";
 
     if (_cache.containsKey(finalUri)) {
       bodyBytes = _cache.get(finalUri);
