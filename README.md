@@ -8,5 +8,10 @@ https://proxy.marvel.techmeup.io
 ### Prerequisites
 Install Dart and Flutter https://flutter.dev/docs/get-started/install
 
+### Dependencies
+Run `docker-compose up` from this directory:
+* Redis: acccessible on http://localhost:6379
+* Rebrow: acccessible on http://localhost:5001
+
 ### Run
 Then use VS.Code with the `.vscode` directory configuration.

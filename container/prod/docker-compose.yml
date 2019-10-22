@@ -1,0 +1,14 @@
+version: '2'
+services:
+  web:
+    image: registry.techmeup.io/travelcar/marvel_client:latest
+    labels:
+      io.rancher.container.pull_image: always
+  api:
+    image: registry.techmeup.io/travelcar/marvel_proxy:latest
+    labels:
+      io.rancher.container.pull_image: always
+  redis:
+    image: redis:latest
+    labels:
+      io.rancher.container.pull_image: always

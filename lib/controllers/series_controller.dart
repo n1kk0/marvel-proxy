@@ -1,15 +1,13 @@
-import 'package:dcache/dcache.dart';
 import 'package:marvel_proxy/marvel_proxy.dart';
 
 class SeriesController extends ResourceController {
-  SeriesController(this._cache, this._messageHub);
+  SeriesController(this.cacheService);
 
-  final Cache<String, String> _cache;
-  final ApplicationMessageHub _messageHub;
+  final CacheService cacheService;
 
   @Operation.get()
   Future<Response> getSeries(@Bind.query("tsw") String titleStartsWith) async {
-    return Response.ok(await ApiService(_cache, _messageHub).getMarvelSeries(titleStartsWith));
+    return Response.ok(await ApiService(cacheService).getMarvelSeries(titleStartsWith));
   }
 
   @override

@@ -5,6 +5,7 @@ export 'dart:io';
 
 export 'package:aqueduct/aqueduct.dart';
 
+export 'package:marvel_proxy/tools/cache_service.dart';
 export 'package:marvel_proxy/tools/marvel_api.dart';
 
 export 'package:marvel_proxy/models/marvel_character.dart';

@@ -19,4 +19,4 @@ RUN pub get --offline --no-precompile
 
 EXPOSE 8082
 
-ENTRYPOINT ["dart", "bin/main.dart"]
+ENTRYPOINT ["dart", "bin/main.prod.dart"]

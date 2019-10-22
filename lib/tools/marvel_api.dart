@@ -2,19 +2,17 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:crypto/crypto.dart';
-import 'package:dcache/dcache.dart';
 import 'package:http/http.dart' as http;
 
 import 'package:marvel_proxy/marvel_proxy.dart';
 
 class ApiService {
-  ApiService(this._cache, this._messageHub);
+  ApiService(this.cacheService);
 
+  final CacheService cacheService;
   final String _baseUrl = "https://gateway.marvel.com";
   final String _apiPublicKey = "3d1f66d37dfce525e7bc478de3b021e8";
   final String _apiPrivateKey = "f0ef5215d848fad0762c6ba8cce055a72e7ad6bf";
-  final Cache<String, String> _cache;
-  final ApplicationMessageHub _messageHub;
 
 
   Future<List<MarvelCharacter>> getMarvelCharacters(int page, int comicSeriesFilterId, Function setTotalCount) async {
@@ -38,9 +36,9 @@ class ApiService {
   Future<String> _apiCall(String verb, String cache, String url, [String body]) async {
     String body;
 
-    if (_cache.containsKey(url)) {
-      print("RETREIVE CACHED URL:$url");
-      body = _cache.get(url);
+    if (await cacheService.exists(url)) {
+      print("RETRIEVE CACHED URL:$url");
+      body = (await cacheService.get(url)).toString();
       print("CACHE BODY:${body.substring(0, body.length > 150 ? 150 : body.length)}");
     } else {
       print("REQUEST URL:$url");
@@ -48,8 +46,7 @@ class ApiService {
       final String hash = md5.convert(utf8.encode("$ts$_apiPrivateKey$_apiPublicKey")).toString();
       final http.Response response =  await http.get("$url&ts=$ts&apikey=$_apiPublicKey&hash=$hash");
       body = response.body;
-      _cache.set(url, body);
-      _messageHub.add({"type": cache, "url": url, "response": body});
+      await cacheService.set(url, body);
       print("RESPONSE STATUS_CODE:${response.statusCode} BODY:${response.body.substring(0, response.body.length > 150 ? 150 : response.body.length)}");
     }
 

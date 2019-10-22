@@ -6,7 +6,7 @@
     "configurations": [
         {
             "name": "Aqueduct Dev",
-            "program": "bin/main.dart",
+            "program": "bin/main.dev.dart",
             "request": "launch",
             "type": "dart",
             "debugServer": 4711,
