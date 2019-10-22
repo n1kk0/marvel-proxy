@@ -11,11 +11,15 @@ class CacheService {
   Command command;
 
   Future<void> connect() async {
-    command = await connection.connect(host, port);
+    try {
+      command = await connection.connect(host, port);
+    } on Exception {
+      command = null;
+    }
   }
 
   Future<bool> set(String key, dynamic value) async {
-    final response = await command.send_object(["SET", key, value.toString()]);
+    final response = command != null ? await command.send_object(["SET", key, value.toString()]) : "OK";
 
     return response.toString() == "OK";
   }
@@ -25,7 +29,7 @@ class CacheService {
   }
 
   Future<bool> exists(String key) async {
-    final response = await command.send_object(["EXISTS", key]);
+    final response = command != null ? await command.send_object(["EXISTS", key]) : 0;
 
     return int.parse(response.toString()) == 1;
   }
