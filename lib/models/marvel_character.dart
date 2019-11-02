@@ -5,7 +5,7 @@ class MarvelCharacter {
     return MarvelCharacter(
       name: json["name"].toString(),
       thumbnail: "${json["thumbnail"]["path"]}.${json["thumbnail"]["extension"]}",
-      resourceUri: json["resourceUri"].toString(),
+      resourceUri: json["resourceURI"].toString(),
     );
   }
 
