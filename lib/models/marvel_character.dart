@@ -1,30 +1,41 @@
 class MarvelCharacter {
-  MarvelCharacter({this.name, this.thumbnail, this.resourceUri});
+  MarvelCharacter({this.name, this.thumbnail, this.resourceUri, this.detailUri, this.wikiUri, this.comicsUri});
 
   factory MarvelCharacter.fromJson(Map<String, dynamic> json) {
-    final wikiUrl = json["urls"].firstWhere((url) => url["type"].toString() == "wiki", orElse: () => null);
+    final wikiUri = json["urls"].firstWhere((url) => url["type"].toString() == "wiki", orElse: () => null);
+    final detailUri = json["urls"].firstWhere((url) => url["type"].toString() == "detail", orElse: () => null);
+    final comicsUri = json["urls"].firstWhere((url) => url["type"].toString() == "comiclink", orElse: () => null);
 
     return MarvelCharacter(
       name: json["name"].toString(),
       thumbnail: "${json["thumbnail"]["path"]}.${json["thumbnail"]["extension"]}",
-      resourceUri: wikiUrl != null ? wikiUrl["url"].toString() : null,
+      resourceUri: wikiUri != null ? wikiUri["url"].toString() : null,
+      detailUri: detailUri != null ? detailUri["url"].toString() : null,
+      wikiUri: wikiUri != null ? wikiUri["url"].toString() : null,
+      comicsUri: comicsUri != null ? comicsUri["url"].toString() : null,
     );
   }
 
   String name;
   String thumbnail;
   String resourceUri;
+  String detailUri;
+  String wikiUri;
+  String comicsUri;
 
   Map<String, dynamic> toJson() {
     return {
       "name": name,
       "thumbnail": thumbnail,
-      "resourceUri": resourceUri
+      "resourceUri": resourceUri,
+      "detailUri": detailUri,
+      "wikiUri": wikiUri,
+      "comicsUri": comicsUri,
     };
   }
 
   @override
   String toString() {
-    return "name:$name thumbnail:$thumbnail resourceUri:$resourceUri";
+    return "name:$name thumbnail:$thumbnail detailUri:$detailUri wikiUri:$wikiUri comicsUri:$comicsUri";
   }
 }
