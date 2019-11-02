@@ -5,7 +5,7 @@ class MarvelCharacter {
     return MarvelCharacter(
       name: json["name"].toString(),
       thumbnail: "${json["thumbnail"]["path"]}.${json["thumbnail"]["extension"]}",
-      resourceUri: json["resourceURI"].toString(),
+      resourceUri: ((json["urls"] as List).firstWhere((url) => url["type"].toString() == "wiki") as Map)["url"].toString(),
     );
   }
 
