@@ -2,10 +2,12 @@ class MarvelCharacter {
   MarvelCharacter({this.name, this.thumbnail, this.resourceUri});
 
   factory MarvelCharacter.fromJson(Map<String, dynamic> json) {
+    final wikiUrl = json["urls"].firstWhere((url) => url["type"].toString() == "wiki", orElse: () => null);
+
     return MarvelCharacter(
       name: json["name"].toString(),
       thumbnail: "${json["thumbnail"]["path"]}.${json["thumbnail"]["extension"]}",
-      resourceUri: ((json["urls"] as List).firstWhere((url) => url["type"].toString() == "wiki") as Map)["url"].toString(),
+      resourceUri: wikiUrl != null ? wikiUrl["url"].toString() : null,
     );
   }
 
