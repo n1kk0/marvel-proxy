@@ -24,6 +24,10 @@ class MarvelProxyChannel extends ApplicationChannel {
     return Router()
       ..route("/").linkFunction((request) async => Response.ok(await File('client.html').readAsString())..contentType = ContentType.html)
       ..route("/characters").link(() => CharactersController(cacheService))
+      ..route("/characters/:id/comics").link(() => CharactersComicsController(cacheService))
+      ..route("/characters/:id/events").link(() => CharactersEventsController(cacheService))
+      ..route("/characters/:id/series").link(() => CharactersSeriesController(cacheService))
+      ..route("/characters/:id/stories").link(() => CharactersStoriesController(cacheService))
       ..route("/series").link(() => SeriesController(cacheService))
       ..route("/images").link(() => ImagesController(cacheService))
     ;

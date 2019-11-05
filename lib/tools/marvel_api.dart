@@ -25,6 +25,38 @@ class ApiService {
     }).toList();
   }
 
+  Future<List<MarvelCharacterComic>> getMarvelCharactersComics(int id) async {
+    final String body = await _apiCall("get", "characterComics", "$_baseUrl/v1/public/characters/$id/comics");
+
+    return (jsonDecode(body)["data"]["results"] as List<dynamic>).map<MarvelCharacterComic>((comics) {
+      return MarvelCharacterComic.fromJson(comics as Map<String, dynamic>);
+    }).toList();
+  }
+
+  Future<List<MarvelCharacterEvent>> getMarvelCharactersEvents(int id) async {
+    final String body = await _apiCall("get", "characterEvents", "$_baseUrl/v1/public/characters/$id/events");
+
+    return (jsonDecode(body)["data"]["results"] as List<dynamic>).map<MarvelCharacterEvent>((comics) {
+      return MarvelCharacterEvent.fromJson(comics as Map<String, dynamic>);
+    }).toList();
+  }
+
+  Future<List<MarvelCharacterSeries>> getMarvelCharactersSeries(int id) async {
+    final String body = await _apiCall("get", "characterSeries", "$_baseUrl/v1/public/characters/$id/series");
+
+    return (jsonDecode(body)["data"]["results"] as List<dynamic>).map<MarvelCharacterSeries>((comics) {
+      return MarvelCharacterSeries.fromJson(comics as Map<String, dynamic>);
+    }).toList();
+  }
+
+  Future<List<MarvelCharacterStory>> getMarvelCharactersStories(int id) async {
+    final String body = await _apiCall("get", "characterStories", "$_baseUrl/v1/public/characters/$id/stories");
+
+    return (jsonDecode(body)["data"]["results"] as List<dynamic>).map<MarvelCharacterStory>((comics) {
+      return MarvelCharacterStory.fromJson(comics as Map<String, dynamic>);
+    }).toList();
+  }
+
   Future<List<MarvelSeries>> getMarvelSeries(String titleStartsWith) async {
     final String body = await _apiCall("get", "series", "$_baseUrl/v1/public/series?orderBy=title&limit=15&titleStartsWith=$titleStartsWith");
 
