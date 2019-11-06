@@ -2,7 +2,7 @@ class MarvelCharacterEvent {
   MarvelCharacterEvent({this.id, this.title, this.thumbnail, this.description, this.detailUri});
 
   factory MarvelCharacterEvent.fromJson(Map<String, dynamic> json) {
-    final detailUri = json["urls"].firstWhere((url) => url["type"].toString() == "detail", orElse: () => null);
+    final detailUri = json["urls"] == null ? null : json["urls"].firstWhere((url) => url["type"].toString() == "detail", orElse: () => null);
 
     return MarvelCharacterEvent(
       id: int.parse(json["id"].toString()),

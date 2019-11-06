@@ -2,7 +2,7 @@ class MarvelCharacterSeries {
   MarvelCharacterSeries({this.id, this.title, this.thumbnail, this.description, this.detailUri});
 
   factory MarvelCharacterSeries.fromJson(Map<String, dynamic> json) {
-    final detailUri = json["urls"].firstWhere((url) => url["type"].toString() == "detail", orElse: () => null);
+    final detailUri = json["urls"] == null ? null : json["urls"].firstWhere((url) => url["type"].toString() == "detail", orElse: () => null);
 
     return MarvelCharacterSeries(
       id: int.parse(json["id"].toString()),
