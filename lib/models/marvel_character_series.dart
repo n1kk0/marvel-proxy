@@ -5,7 +5,7 @@ class MarvelCharacterSeries {
     return MarvelCharacterSeries(
       id: int.parse(json["id"].toString()),
       title: json["title"].toString(),
-      thumbnail: "${json["thumbnail"]["path"]}.${json["thumbnail"]["extension"]}",
+      thumbnail: json["thumbnail"] != null ? "${json["thumbnail"]["path"]}.${json["thumbnail"]["extension"]}" : null,
       description: json["description"].toString(),
     );
   }

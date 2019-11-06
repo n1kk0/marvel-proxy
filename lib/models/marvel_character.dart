@@ -9,7 +9,7 @@ class MarvelCharacter {
     return MarvelCharacter(
       id: int.parse(json["id"].toString()),
       name: json["name"].toString(),
-      thumbnail: "${json["thumbnail"]["path"]}.${json["thumbnail"]["extension"]}",
+      thumbnail: json["thumbnail"] != null ? "${json["thumbnail"]["path"]}.${json["thumbnail"]["extension"]}" : null,
       resourceUri: wikiUri != null ? wikiUri["url"].toString() : null,
       detailUri: detailUri != null ? detailUri["url"].toString() : null,
       wikiUri: wikiUri != null ? wikiUri["url"].toString() : null,
