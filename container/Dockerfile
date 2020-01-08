@@ -9,4 +9,4 @@ RUN pub get --offline --no-precompile
 WORKDIR /app
 EXPOSE 80
 
-ENTRYPOINT ["pub", "run", "aqueduct:aqueduct", "serve", "-c", "config.prod.yaml", "-p", "80", "-n", "4"]
+ENTRYPOINT ["pub", "run", "aqueduct:aqueduct", "serve", "-c", "config.yaml", "-p", "80", "-n", "4"]
