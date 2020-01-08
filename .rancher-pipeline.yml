@@ -17,7 +17,7 @@ stages:
   - publishImageConfig:
       dockerfilePath: ./container/Dockerfile
       buildContext: .
-      tag: ${CICD_IMAGE}:${CICD_EXECUTION_SEQUENCE}
+      tag: marvel-proxy:${CICD_EXECUTION_SEQUENCE}
 - name: deploy
   steps:
   - applyYamlConfig:
