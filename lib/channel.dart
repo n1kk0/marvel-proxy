@@ -14,6 +14,10 @@ class MarvelProxyChannel extends ApplicationChannel {
   Future prepare() async {
     final config = ApiConfiguration(options.configurationFilePath);
     cacheService = CacheService(config.redisHost, config.redisPort);
+print("################################");
+print(config.redisHost);
+print(config.redisPort);
+print("################################");
     await cacheService.connect();
 
     logger.onRecord.listen((rec) => print("$rec ${rec.error ?? ""} ${rec.stackTrace ?? ""}"));
