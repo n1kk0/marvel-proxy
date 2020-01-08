@@ -21,7 +21,7 @@ stages:
 - name: deploy
   steps:
   - applyYamlConfig:
-      path: ./container/prod/deployment.yaml
+      path: ./container/deployment.yaml
 timeout: 60
 notification:
   recipients:
