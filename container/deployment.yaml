@@ -41,6 +41,10 @@ metadata:
   name: marvel-proxy-service
   namespace: marvel
 spec:
+  template:
+    metadata:
+      labels:
+        app: marvel-proxy
   selector:
     app: marvel-proxy
   type: ClusterIP
