@@ -13,3 +13,5 @@ Dart_Packages.xml
 .idea/
 *.aqueduct.pid
 client.html
+test/.test_coverage.dart
+.dart_tool
