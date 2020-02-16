@@ -1,13 +1,13 @@
 import 'package:marvel_proxy/marvel_proxy.dart';
 
 class CharactersEventsController extends ResourceController {
-  CharactersEventsController(this.cacheService);
+  CharactersEventsController(this.apiService);
 
-  final CacheService cacheService;
+  final ApiService apiService;
 
   @Operation.get("id")
   Future<Response> getEvents(@Bind.path("id") int id) async {
-    return Response.ok(await ApiService(cacheService).getMarvelCharactersEvents(id));
+    return Response.ok(await apiService.getMarvelCharactersEvents(id));
   }
 
   @override

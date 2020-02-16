@@ -1,4 +1,12 @@
 ---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: marvel-proxy-secret
+data:
+  marvelApiPublicKey: 3d1f66d37dfce525e7bc478de3b021e8
+  marvelApiPrivateKey: f0ef5215d848fad0762c6ba8cce055a72e7ad6bf
+---
 apiVersion: cert-manager.io/v1alpha2
 kind: Certificate
 metadata:
@@ -74,3 +82,14 @@ spec:
         image: ${CICD_IMAGE}:${CICD_EXECUTION_SEQUENCE}
         ports:
         - containerPort: 80
+    env:
+    - name: MARVEL_API_PUBLIC_KEY
+      valueFrom:
+        secretKeyRef:
+          name: marvel-proxy-secret
+          key: marvelApiPublicKey
+    - name: MARVEL_API_PRIVATE_KEY
+      valueFrom:
+        secretKeyRef:
+          name: marvel-proxy-secret
+          key: marvelApiPrivateKey

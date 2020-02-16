@@ -7,12 +7,12 @@ import 'package:http/http.dart' as http;
 import 'package:marvel_proxy/marvel_proxy.dart';
 
 class ApiService {
-  ApiService(this.cacheService);
+  ApiService(this._apiPublicKey, this._apiPrivateKey, this.cacheService);
 
   final CacheService cacheService;
   final String _baseUrl = "https://gateway.marvel.com";
-  final String _apiPublicKey = "3d1f66d37dfce525e7bc478de3b021e8";
-  final String _apiPrivateKey = "f0ef5215d848fad0762c6ba8cce055a72e7ad6bf";
+  final String _apiPublicKey;
+  final String _apiPrivateKey;
 
 
   Future<List<MarvelCharacter>> getMarvelCharacters(int page, int comicSeriesFilterId, Function setTotalCount) async {

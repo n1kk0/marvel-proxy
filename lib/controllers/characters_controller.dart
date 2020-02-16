@@ -1,15 +1,15 @@
 import 'package:marvel_proxy/marvel_proxy.dart';
 
 class CharactersController extends ResourceController {
-  CharactersController(this.cacheService);
+  CharactersController(this.apiService);
 
-  final CacheService cacheService;
+  final ApiService apiService;
 
   @Operation.get()
   Future<Response> getCharacters(@Bind.query("p") int page, {@Bind.query("csfi") int comicSeriesFilterId}) async {
     int count;
 
-    final characters = await ApiService(cacheService).getMarvelCharacters(page, comicSeriesFilterId, (int i) {
+    final characters = await apiService.getMarvelCharacters(page, comicSeriesFilterId, (int i) {
       count = i;
     });
 

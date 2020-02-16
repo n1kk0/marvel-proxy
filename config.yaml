@@ -1,2 +1,4 @@
 redisHost: redis-master
 redisPort: 6379
+marvelApiPublicKey: $MARVEL_API_PUBLIC_KEY
+marvelApiPrivateKey: $MARVEL_API_PRIVATE_KEY

@@ -1,13 +1,13 @@
 import 'package:marvel_proxy/marvel_proxy.dart';
 
 class SeriesController extends ResourceController {
-  SeriesController(this.cacheService);
+  SeriesController(this.apiService);
 
-  final CacheService cacheService;
+  final ApiService apiService;
 
   @Operation.get()
   Future<Response> getSeries(@Bind.query("tsw") String titleStartsWith) async {
-    return Response.ok(await ApiService(cacheService).getMarvelSeries(titleStartsWith));
+    return Response.ok(await apiService.getMarvelSeries(titleStartsWith));
   }
 
   @override

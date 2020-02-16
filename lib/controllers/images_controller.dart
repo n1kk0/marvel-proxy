@@ -7,6 +7,7 @@ import 'package:marvel_proxy/marvel_proxy.dart';
 
 class ImagesController extends ResourceController {
   ImagesController(this.cacheService);
+
   final CacheService cacheService;
   final RegExp pattern = RegExp("^http://i.annihil.us/u/prod/marvel/i/mg/[a-f,0-9]{1}/[a-f,0-9]{2}/[a-f,0-9]{13}.(gif|jpg|png)\$");
   final List<String> whiteList = ["https://images-na.ssl-images-amazon.com/images/S/cmx-images-prod/StoryArc/1542/1542._SX400_QL80_TTD_.jpg"];
