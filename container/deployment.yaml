@@ -5,8 +5,8 @@ metadata:
   name: marvel-proxy-secret
   namespace: marvel
 data:
-  marvelApiPublicKey: 3d1f66d37dfce525e7bc478de3b021e8
-  marvelApiPrivateKey: f0ef5215d848fad0762c6ba8cce055a72e7ad6bf
+  marvelApiPublicKey: M2QxZjY2ZDM3ZGZjZTUyNWU3YmM0NzhkZTNiMDIxZTg=
+  marvelApiPrivateKey: ZjBlZjUyMTVkODQ4ZmFkMDc2MmM2YmE4Y2NlMDU1YTcyZTdhZDZiZg==
 ---
 apiVersion: cert-manager.io/v1alpha2
 kind: Certificate
