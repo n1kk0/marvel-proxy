@@ -3,6 +3,7 @@ apiVersion: v1
 kind: Secret
 metadata:
   name: marvel-proxy-secret
+  namespace: marvel
 data:
   marvelApiPublicKey: 3d1f66d37dfce525e7bc478de3b021e8
   marvelApiPrivateKey: f0ef5215d848fad0762c6ba8cce055a72e7ad6bf
