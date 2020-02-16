@@ -5,5 +5,5 @@ Future main() async {
       ..options.configurationFilePath = "config.src.yaml"
       ..options.port = 8888;
 
-  await app.start(numberOfInstances: 2);
+  await app.start();
 }

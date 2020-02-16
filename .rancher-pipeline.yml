@@ -1,4 +1,19 @@
 stages:
+- name: tests
+  steps:
+  - runScriptConfig:
+      image: google/dart:latest
+      shellScript: |
+        export PUB_CACHE=$PWD/.pub_cache
+        pub version
+        pub get
+        pub upgrade
+        pub global activate aqueduct
+        pub get --offline
+        cp config.test.yaml config.src.yaml
+        export PATH="$PATH":"$PWD/.pub_cache/bin"
+        pub run test
+        pub run test_coverage
 - name: build
   steps:
   - runScriptConfig:

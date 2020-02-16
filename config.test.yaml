@@ -1,0 +1,2 @@
+redisHost: redis-test-master
+redisPort: 6379

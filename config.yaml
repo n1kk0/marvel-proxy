@@ -1,2 +1,2 @@
-redisHost: redis-master.marvel.svc.cluster.local
+redisHost: redis-master
 redisPort: 6379
