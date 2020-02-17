@@ -1,4 +1,6 @@
 # marvel_proxy
+![Dart CI](https://github.com/n1kk0/marvel-proxy/workflows/Dart%20CI/badge.svg)
+
 ## Production envrironment
 https://proxy.marvel.techmeup.io
 
